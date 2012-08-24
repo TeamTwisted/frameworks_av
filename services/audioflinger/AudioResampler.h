@@ -24,6 +24,10 @@
 #include <media/AudioBufferProvider.h>
 #include <system/audio.h>
 
+#if __cplusplus < 201103L && !defined(__GXX_EXPERIMENTAL_CXX0X__) && !defined(constexpr)
+#define constexpr const
+#endif
+
 namespace android {
 // ----------------------------------------------------------------------------
 
@@ -81,13 +85,13 @@ public:
 
 protected:
     // number of bits for phase fraction - 30 bits allows nearly 2x downsampling
-    static const int kNumPhaseBits = 30;
+    static constexpr int kNumPhaseBits = 30;
 
     // phase mask for fraction
-    static const uint32_t kPhaseMask = (1LU<<kNumPhaseBits)-1;
+    static constexpr uint32_t kPhaseMask = (1LU<<kNumPhaseBits)-1;
 
     // multiplier to calculate fixed point phase increment
-    static const double kPhaseMultiplier;
+    static constexpr double kPhaseMultiplier;
 
     AudioResampler(int inChannelCount, int32_t sampleRate, src_quality quality);
 
