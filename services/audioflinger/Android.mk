@@ -39,6 +39,11 @@ LOCAL_SRC_FILES:=               \
 
 LOCAL_SRC_FILES += StateQueue.cpp
 
+# uncomment for debugging timing problems related to StateQueue::push()
+LOCAL_CFLAGS += -DSTATE_QUEUE_DUMP
+
+LOCAL_CFLAGS += -fno-strict-aliasing
+
 LOCAL_C_INCLUDES := \
     $(TOPDIR)frameworks/av/services/audiopolicy \
     $(call include-path-for, audio-effects) \
