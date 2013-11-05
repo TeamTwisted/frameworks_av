@@ -212,8 +212,11 @@ status_t Visualizer::setMeasurementMode(uint32_t mode) {
 
     p->psize = sizeof(uint32_t);
     p->vsize = sizeof(uint32_t);
-    *(int32_t *)p->data = VISUALIZER_PARAM_MEASUREMENT_MODE;
-    *((int32_t *)p->data + 1)= mode;
+    int32_t const vpmm = VISUALIZER_PARAM_MEASUREMENT_MODE;
+    memcpy(&p->data, &vpmm, sizeof(vpmm));
+    memcpy(&p->data+sizeof(vpmm), &mode, sizeof(mode));
+    //*(int32_t *)p->data = VISUALIZER_PARAM_MEASUREMENT_MODE;
+    //*((int32_t *)p->data + 1)= mode;
     status_t status = setParameter(p);
 
     ALOGV("setMeasurementMode mode %d  status %d p->status %d", mode, status, p->status);
