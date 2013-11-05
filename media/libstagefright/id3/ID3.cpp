@@ -546,11 +546,11 @@ void ID3::Iterator::getstring(String8 *id, bool otherdata) const {
         // UCS-2
         // API wants number of characters, not number of bytes...
         int len = n / 2;
-        const char16_t *framedata = (const char16_t *) (frameData + 1);
-        char16_t *framedatacopy = NULL;
+        const uint16_t *framedata = (const uint16_t *) (frameData + 1);
+        uint16_t *framedatacopy = NULL;
         if (*framedata == 0xfffe) {
             // endianness marker doesn't match host endianness, convert
-            framedatacopy = new char16_t[len];
+            framedatacopy = new uint16_t[len];
             for (int i = 0; i < len; i++) {
                 framedatacopy[i] = bswap_16(framedata[i]);
             }
