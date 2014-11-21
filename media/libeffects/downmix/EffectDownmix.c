@@ -618,7 +618,7 @@ int Downmix_Configure(downmix_module_t *pDwmModule, effect_config_t *pConfig, bo
     }
 
     if (&pDwmModule->config != pConfig) {
-        memcpy(&pDwmModule->config, pConfig, sizeof(effect_config_t));
+        memmove(&pDwmModule->config, pConfig, sizeof(effect_config_t));
     }
 
     if (init) {
