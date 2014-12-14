@@ -2,7 +2,8 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_CPPFLAGS += -D__STDINT_LIMITS \
-                  -Werror
+                  -Werror \
+                  -fno-strict-aliasing
 
 LOCAL_SRC_FILES:= EbmlUtil.cpp        \
                   WebmElement.cpp     \
