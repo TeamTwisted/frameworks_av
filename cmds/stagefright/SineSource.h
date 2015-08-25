@@ -3,6 +3,7 @@
 #define SINE_SOURCE_H_
 
 #include <media/stagefright/MediaSource.h>
+#include <utils/Compat.h>
 
 #if __cplusplus < 201103L && !defined(__GXX_EXPERIMENTAL_CXX0X__) && !defined(constexpr)
 #define constexpr const
@@ -28,7 +29,7 @@ protected:
 
 private:
     enum { kBufferSize = 8192 };
-    static constexpr double kFrequency = 500.0;
+    static const CONSTEXPR double kFrequency = 500.0;
 
     bool mStarted;
     int32_t mSampleRate;

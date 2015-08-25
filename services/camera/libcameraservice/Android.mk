@@ -74,6 +74,7 @@ LOCAL_C_INCLUDES += \
 
 
 LOCAL_CFLAGS += -Wall -Wextra
+#LOCAL_CFLAGS += -std=gnu++11
 
 LOCAL_MODULE:= libcameraservice
 
