@@ -39,11 +39,6 @@ LOCAL_SRC_FILES:=               \
 
 LOCAL_SRC_FILES += StateQueue.cpp
 
-# uncomment for debugging timing problems related to StateQueue::push()
-LOCAL_CFLAGS += -DSTATE_QUEUE_DUMP
-
-LOCAL_CFLAGS += -fno-strict-aliasing
-
 LOCAL_C_INCLUDES := \
     $(TOPDIR)frameworks/av/services/audiopolicy \
     $(call include-path-for, audio-effects) \
@@ -70,8 +65,15 @@ LOCAL_STATIC_LIBRARIES := \
     libcpustats \
     libmedia_helper
 
-LOCAL_CFLAGS += -Os
-    
+#QTI Resampler
+ifeq ($(call is-vendor-board-platform,QCOM),true)
+ifeq ($(strip $(AUDIO_FEATURE_ENABLED_EXTN_RESAMPLER)),true)
+LOCAL_CFLAGS += -DQTI_RESAMPLER
+endif
+endif
+#QTI Resampler
+
+LOCAL_CFLAGS += -Os -std=gnu++11
 LOCAL_MODULE:= libaudioflinger
 LOCAL_32_BIT_ONLY := true
 
@@ -137,6 +139,7 @@ LOCAL_SHARED_LIBRARIES := \
     liblog
 
 LOCAL_MODULE := libaudioresampler
+LOCAL_CFLAGS += -std=gnu++11
 
 include $(BUILD_SHARED_LIBRARY)
 

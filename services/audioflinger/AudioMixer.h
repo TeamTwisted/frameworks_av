@@ -21,6 +21,11 @@
 #include <stdint.h>
 #include <sys/types.h>
 
+#include <hardware/audio_effect.h>
+#include <media/AudioBufferProvider.h>
+#include <media/nbaio/NBLog.h>
+#include <system/audio.h>
+#include <utils/Compat.h>
 #include <utils/threads.h>
 
 #include <media/AudioBufferProvider.h>
@@ -58,7 +63,7 @@ public:
     static const uint32_t MAX_NUM_CHANNELS_TO_DOWNMIX = AUDIO_CHANNEL_COUNT_MAX;
 
     static const uint16_t UNITY_GAIN_INT = 0x1000;
-    static const float    UNITY_GAIN_FLOAT = 1.0f;
+    static const CONSTEXPR float UNITY_GAIN_FLOAT = 1.0f;
 
     enum { // names
 
